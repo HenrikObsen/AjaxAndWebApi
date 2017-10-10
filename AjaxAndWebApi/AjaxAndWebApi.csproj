@@ -81,14 +81,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddPerson.html" />
+    <Content Include="GetPerson.html" />
+    <Content Include="GetPersons.html" />
+    <Content Include="GetString.html" />
     <Content Include="Global.asax" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="Plus.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DataController.cs" />
+    <Compile Include="Duser\AutoFac.cs" />
+    <Compile Include="Duser\Conn.cs" />
+    <Compile Include="Duser\Mapper.cs" />
+    <Compile Include="Factories\PersonFac.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -102,8 +114,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

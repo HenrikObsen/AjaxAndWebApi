@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="js/jquery.min.js"></script>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="myDiv"></div>
+    <script type="text/javascript">
+        let id = 1;
+
+        $.ajax({
+            type: 'GET',
+            url: 'api/Data/GetPerson/' + id,
+            success: function (person) {
+
+                $("#myDiv").html(person.Name);
+
+            }
+        });
+    </script>
+</body>
+</html>

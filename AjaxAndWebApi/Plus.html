@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="js/jquery.min.js"></script>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="myDiv"></div>
+    <script type="text/javascript">
+        let tal1 = 33;
+        let tal2 = 44;
+        
+        $.ajax({
+            type: 'GET',
+            url: 'api/Data/Plus/' + tal1 + '/' + tal2 + '/',
+            success: function (data) {
+
+                $("#myDiv").html(data);
+
+            }
+        });
+    </script>
+</body>
+</html>

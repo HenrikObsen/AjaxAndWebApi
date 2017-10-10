@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="js/jquery.min.js"></script>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        function Person(ID, Name, Age) {
+
+            this.ID = ID;
+            this.Name = Name;
+            this.Age = Age;
+        }
+
+        function AddPerson() {
+
+            var ID = 0;
+            var Name = $('#Name').val();
+            var Age = $('#Age').val();
+            
+            var p = new Person(ID, Name, Age);
+
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/Data/AddPerson/',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify(p),
+                success: function (data) {
+                    $('#msg').html('Personen ' + data + ' er gemt!');
+                },
+                error: function (jqXHR, exception) {
+                    var msg = 'Status: ' + jqXHR.status + "<br/>Exeption: " + exception;
+                    $('#msg').html(msg);            
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="return AddPerson(), false;">
+        Navn: <input id="Name" type="text" />
+        <br />
+        <input id="Age" type="text" />
+        <br />
+        <input id="Gem" type="submit" value="Gem" />
+    </form>
+    <div id="msg"></div>
+
+</body>
+</html>
+

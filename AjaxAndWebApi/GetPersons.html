@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="js/jquery.min.js"></script>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <ul id="myListe"></ul>
+    <script type="text/javascript">
+
+        $.ajax({
+            type: 'GET',
+            url: 'api/Data/GetPersons/',
+            success: function (persons) {
+                $("#myListe").empty();
+                $.each(persons, function (i, person) {
+
+                    $("#myListe").append("<li>" + person.Name + "</li>");
+
+                });
+            }
+        });
+    </script>
+</body>
+</html>
