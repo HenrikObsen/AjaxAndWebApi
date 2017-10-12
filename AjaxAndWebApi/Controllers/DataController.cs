@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
-
+using System.Collections.Specialized;
 
 namespace AjaxAndWebApi.Controllers
 {
@@ -125,16 +125,17 @@ namespace AjaxAndWebApi.Controllers
 
         }
 
+        
         [Route("api/data/GetSeacretData")]
         [HttpGet]
         public string GetSeacretData()
         {
-            Validate();
+             //ValidateToken();
             return "En hemmelig tekst!!!";
         }
 
 
-        public void Validate()
+        public void ValidateToken()
         {
             var token = Request.Headers.GetValues("_token").FirstOrDefault();
             if (token != "Test123")
@@ -142,5 +143,6 @@ namespace AjaxAndWebApi.Controllers
                 throw new System.Web.HttpException(403, "You must be logged in to access this resource.");
             }
         }
-    }
+    }   
+
 }
