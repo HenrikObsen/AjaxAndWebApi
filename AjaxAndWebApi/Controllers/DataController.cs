@@ -5,13 +5,18 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.IO;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace AjaxAndWebApi.Controllers
 {
+
     public class DataController : ApiController
     {
+
         PersonFac pf = new PersonFac();
         Person person = new Person();
+
 
         [Route("api/data/GetString")]
         [HttpGet]
@@ -82,7 +87,7 @@ namespace AjaxAndWebApi.Controllers
             Uploader u = new Uploader();
 
             int iUploadedCnt = 0;
-                        
+
             string sPath = "";
             sPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Images/");
 
@@ -118,6 +123,24 @@ namespace AjaxAndWebApi.Controllers
                 return "Upload Failed!!!";
             }
 
+        }
+
+        [Route("api/data/GetSeacretData")]
+        [HttpGet]
+        public string GetSeacretData()
+        {
+            Validate();
+            return "En hemmelig tekst!!!";
+        }
+
+
+        public void Validate()
+        {
+            var token = Request.Headers.GetValues("_token").FirstOrDefault();
+            if (token != "Test123")
+            {
+                throw new System.Web.HttpException(403, "You must be logged in to access this resource.");
+            }
         }
     }
 }
