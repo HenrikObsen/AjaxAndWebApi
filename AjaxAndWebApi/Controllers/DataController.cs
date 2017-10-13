@@ -13,6 +13,7 @@ namespace AjaxAndWebApi.Controllers
         PersonFac pf = new PersonFac();
         Person person = new Person();
 
+        
         [Route("api/data/GetString")]
         [HttpGet]
         public string GetString()
