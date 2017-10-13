@@ -89,6 +89,7 @@
     <Content Include="Images\transfer.gif" />
     <Content Include="js\jquery.min.js" />
     <Content Include="Plus.html" />
+    <Content Include="TokenAuthentication.html" />
     <Content Include="UploadImage.html" />
     <Content Include="Web.config" />
   </ItemGroup>
