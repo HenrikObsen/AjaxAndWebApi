@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.IO;
-using System.ComponentModel.DataAnnotations;
-using System.Collections.Specialized;
+using System.Web.Helpers;
+
 
 namespace AjaxAndWebApi.Controllers
 {
@@ -16,6 +13,7 @@ namespace AjaxAndWebApi.Controllers
 
         PersonFac pf = new PersonFac();
         Person person = new Person();
+        BrugerFac bf = new BrugerFac();
 
         [Route("api/data/GetString")]
         [HttpGet]
@@ -141,6 +139,22 @@ namespace AjaxAndWebApi.Controllers
             {
                 throw new System.Web.HttpException(403, "You must be logged in to access this resource.");
             }
+        }
+
+
+        [Route("api/Data/GetPersons/{from}/{to}")]
+        [HttpGet]
+        public IEnumerable<Person> GetPersons(int from, int to)
+        {
+            return pf.GetPersons(from, to);
+        }
+
+        [Route("api/Data/Login/{email}/{pass}")]
+        [HttpGet]
+        public Bruger Login(string email, string pass)
+        {                        
+            Bruger b = bf.Login(email.Trim(), Crypto.Hash(pass.Trim()));            
+            return b;
         }
     }   
 

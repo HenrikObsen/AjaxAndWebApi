@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        function Login() {
+
+            var pass = $("#pass").val();
+            var email = $("#bruger").val();
+
+            $.ajax({
+                type: 'GET',
+                url: '/api/Data/Login/' + email + '/' + pass,
+                success: function (data) {
+                    if (data.ID > 0) {
+                        window.localStorage.setItem("user", data.ID);
+                        window.location.assign("Login.html");
+                    } else {
+                        $("#msg").html("<b>Brugeren blev ikke fundet!!!</b>");
+                    }
+                }
+            });
+        }
+
+
+
+        $(function () {
+
+            if (window.localStorage.getItem("user") !== null) {
+                $("#hemmelig").show();
+                $("#hemmelig").html("Hemmelig tekst!!");
+            } else {
+                $("#hemmelig").hide();
+            }
+
+        });
+    </script>
+</head>
+<body>
+    <p id="hemmelig"></p>
+    <form onsubmit="return Login(), false;">
+        <input id="bruger" type="text" placeholder="Indtast dit brugernavn...">
+        <br />
+        <input id="pass" type="password" placeholder="Indtast dit password">
+        <br />
+        <input id="subBut" class="button" type="submit" value="Login" />
+    </form>
+    <div id="msg">Login med test@test.dk og admin</div>
+</body>
+</html>

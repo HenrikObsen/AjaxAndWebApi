@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+    <img id="loader" class="center" src="Images/transfer.gif" />
+    <div id="liste">
+
+    </div>
+    <input type="button" value="Hent flere" onclick="GetPersons();" />
+
+    <script type="text/javascript">
+        var c = 1;
+
+        $(function () {
+            //$("#liste").empty();
+            GetPersons();
+        });
+
+        function GetPersons() {
+            var antal = 2;
+            // console.log("ready!");
+            $("#loader").show();
+
+            var uri = 'api/Data/GetPersons/';
+
+            if (c === 1) {
+                uri = 'api/Data/GetPersons/1/' + antal;
+                c = antal + 1;
+            } else {
+                uri = 'api/Data/GetPersons/' + c + '/' + (c + antal);
+                c = c + (antal + 1);
+            }
+
+            $.ajax({
+                type: 'GET',
+                url: uri,
+                success: function (data) {
+                    $("#loader").hide();
+
+                    $.each(data, function (i, person) {
+
+                        $("#liste").append(person.Name + '<br/>');
+
+                    });
+                }
+            });
+
+            return false;
+        }
+    </script>
+
+</body>
+</html>
